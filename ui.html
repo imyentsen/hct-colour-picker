@@ -1,0 +1,25 @@
+<h2>HCT Colour Filler</h2>
+<p>H: <input id="hue" value="0.2"></p>
+<p>C: <input id="chroma" value="0"></p>
+<p>T: <input id="tone" value="0"></p>
+<button id="create">Fill</button>
+<button id="cancel">Cancel</button>
+<script>
+
+document.getElementById('create').onclick = () => {
+  const huebox = document.getElementById('hue');
+  const chromabox = document.getElementById('chroma');
+  const tonebox = document.getElementById('tone');
+  console.log(huebox)
+  const huevalue = Number(huebox.value);
+  console.log("parsed:" + huevalue)
+  const chromavalue = Number(chromabox.value);
+  const tonevalue = Number(tonebox.value);
+  parent.postMessage({ pluginMessage: { type: 'create-color', huevalue, chromavalue, tonevalue } }, '*')
+}
+
+document.getElementById('cancel').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+}
+
+</script>
